@@ -49,6 +49,17 @@ func TestGetGreeting(t *testing.T) {
 	assert.Equal(t, http.StatusOK, w.Code)
 	assert.JSONEq(t, `{"message": "Hello, World!"}`, w.Body.String())
 
+
+func (suite *DatabaseTestSuite) SetupSuite() {
+	//dsn := "user=testuser password=testpassword dbname=testdb sslmode=disable"
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	suite.Require().NoError(err, "Error connecting to the test database")
+	suite.db = db.Debug()
+
+	err = suite.db.AutoMigrate(&User{})
+	suite.Require().NoError(err, "Error auto-migrating database tables")
+}
+
 }
 ```
 
@@ -78,6 +89,8 @@ func ConnectDatabase(dsn string) (*gorm.DB, error) {
 	}
 	return db, nil
 }
+
+
 
 ```
 
