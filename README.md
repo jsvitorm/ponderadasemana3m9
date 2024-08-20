@@ -6,7 +6,7 @@ Em Go, os testes são uma parte crucial do desenvolvimento de software de alta q
 
 ## Desenvolvimento Orientado a Testes (TDD)
 
-O TDD é uma abordagem de desenvolvimento de software onde os testes são escritos antes do código funcional. Este processo envolve três etapas principais:
+O Desenvolvimento Orientado a Testes (TDD, do inglês Test-Driven Development) é uma metodologia de desenvolvimento de software que coloca os testes no centro do processo de criação do código. Em vez de escrever o código primeiro e, posteriormente, testar, o TDD inverte essa ordem: os testes são escritos antes do código funcional, guiando o desenvolvimento e garantindo que cada funcionalidade seja validada de forma eficaz desde o início. Possui 3 etapas:
 
 1. **Red (Vermelho)**: Escrever um teste que falhe inicialmente, pois a funcionalidade ainda não foi implementada.
 2. **Green (Verde)**: Escrever o código mínimo necessário para fazer o teste passar.
@@ -55,14 +55,16 @@ func TestGetGreeting(t *testing.T) {
 
 Quando rodamos esse teste, ele falhará por não ter sua implementação ou por estar incompleta
 
-IMGs
+<img src="imgs/Screenshot_4.png" alt="Descrição da Imagem" width="600">
+
+<img src="imgs/Screenshot_5.png" alt="Descrição da Imagem" width="600">
 
 
 ### Green: Código necessário para o teste funcionar
 
 Agora escrevemos o código que passará nos testes
 
-```
+```go
 
 
 func GetGreeting(c *gin.Context) {
@@ -79,15 +81,26 @@ func ConnectDatabase(dsn string) (*gorm.DB, error) {
 
 ```
 
-imgs
 
 Com esse código conseguiremos passar nos testes
+
+<img src="imgs/Screenshot_2.png" alt="Descrição da Imagem" width="600">
+
+<img src="imgs/Screenshot_3.png" alt="Descrição da Imagem" width="600">
 
 
 ### Refactor: Melhorar o código mantendo os testes passando
 Com os testes passando, podemos refatorar o código se necessário. Por exemplo, poderíamos melhorar a configuração do banco de dados ou a estrutura dos handlers para maior clareza e manutenção. No entanto, no exemplo atual, o código já está relativamente simples e claro.
 
 ## Conclusão
-Seguindo o ciclo TDD (Red, Green, Refactor), garantimos que cada nova funcionalidade é bem testada e que o código é continuamente melhorado para manter a qualidade e legibilidade. Essa prática ajuda a prevenir bugs e facilita a manutenção e evolução do software.
+Seguindo o ciclo TDD (Red, Green, Refactor), garantimos que cada nova funcionalidade é bem testada e que o código é continuamente melhorado para manter a qualidade e legibilidade. 
+
+Além disso, carrega muitos beneficios como:
+
+**Qualidade do Código:** O TDD força os desenvolvedores a pensar nos requisitos e na funcionalidade antes de escrever o código, o que resulta em um código mais claro e bem estruturado.
+
+**Confiança na Evolução do Sistema:** Com um conjunto robusto de testes automatizados, os desenvolvedores podem refatorar e evoluir o sistema com confiança, sabendo que os testes vão detectar possíveis regressões.
+
+**Menos Bugs:** Como os testes são escritos antes do código, os bugs são detectados mais cedo no ciclo de desenvolvimento, reduzindo o custo de correção e aumentando a confiabilidade do software.
 
 
